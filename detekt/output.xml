@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="4.3">
+<file name="com/kohls/bootstrap/bootstrapapp/di/AutoInjector.kt">
+	<error line="17" column="5" severity="warning" message="Companion object should be placed last in class(CompanionObjectOrder)" source="detekt.CompanionObjectOrder" />
+	<error line="54" column="9" severity="warning" message="Companion object should be placed last in class(CompanionObjectOrder)" source="detekt.CompanionObjectOrder" />
+</file>
+<file name="com/kohls/bootstrap/bootstrapapp/util/ext/ArchitectureComponentsExt.kt">
+	<error line="8" column="93" severity="warning" message="Companion object should be placed last in class(CompanionObjectOrder)" source="detekt.CompanionObjectOrder" />
+</file>
+</checkstyle>

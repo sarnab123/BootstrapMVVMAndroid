@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist timestamp="1546934315348"></Blacklist>
+  <Whitelist timestamp="1547096997815">
+    <ID>CompanionObjectOrder:AutoInjector.kt$&lt;no name provided&gt; : ActivityLifecycleCallbacks</ID>
+    <ID>CompanionObjectOrder:AutoInjector.kt$&lt;no name provided&gt; : FragmentLifecycleCallbacks</ID>
+    <ID>CompanionObjectOrder:ArchitectureComponentsExt.kt$&lt;no name provided&gt; : Observer</ID>
+  </Whitelist>
+</SmellBaseline>
