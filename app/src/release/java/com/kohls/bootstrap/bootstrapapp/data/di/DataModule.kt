@@ -34,6 +34,7 @@ internal object DataModule {
     fun provideRetrofit(oktHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
             .client(oktHttpClient)
             .baseUrl("https://api.github.com")
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

@@ -1,10 +1,9 @@
 package com.kohls.bootstrap.bootstrapapp
 
-import com.kohls.bootstrap.bootstrapapp.AppLifecycleCallbacks
 import com.kohls.bootstrap.bootstrapapp.di.DaggerAppComponent
 import com.kohls.bootstrap.bootstrapapp.di.applyAutoInjector
 import dagger.android.support.DaggerApplication
-import com.kohls.bootstrap.bootstrapapp.ui.app.UserViewModel
+import com.kohls.bootstrap.bootstrapapp.ui.app.ProductDimViewModel
 import javax.inject.Inject
 
 /**
@@ -20,7 +19,7 @@ import javax.inject.Inject
 class App : DaggerApplication() {
 
   @Inject lateinit var appLifecycleCallbacks: AppLifecycleCallbacks
-  @Inject lateinit var userViewModel: UserViewModel
+  @Inject lateinit var productDimViewModel: ProductDimViewModel
 
   override fun applicationInjector() = DaggerAppComponent.builder()
       .application(this)
@@ -30,7 +29,7 @@ class App : DaggerApplication() {
     super.onCreate()
     applyAutoInjector()
     appLifecycleCallbacks.onCreate(this)
-    userViewModel.loginUserId.value = "sarnab123"
+    productDimViewModel.productDimensionId.value = "Gender:Mens Silhouette:Button-Down Shirts Category:Tops Department:Clothing"
   }
 
   override fun onTerminate() {

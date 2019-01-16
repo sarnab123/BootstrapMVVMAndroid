@@ -6,6 +6,8 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import com.kohls.bootstrap.bootstrapapp.data.api.GitHubService
+import com.kohls.bootstrap.bootstrapapp.data.api.LiveDataCallAdapterFactory
+import com.kohls.bootstrap.bootstrapapp.data.api.ProductService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,6 +30,7 @@ internal object DataModule {
     fun providesOkHttp(): OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor()
                     .apply { level = HttpLoggingInterceptor.Level.BODY })
+        .addInterceptor(HeaderInterceptor())
             .build()
 
     @Singleton
@@ -35,7 +38,8 @@ internal object DataModule {
     @JvmStatic
     fun provideRetrofit(oktHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
             .client(oktHttpClient)
-            .baseUrl("https://api.github.com")
+            .baseUrl("https://mapps.kohls.com")
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -43,6 +47,6 @@ internal object DataModule {
     @Singleton
     @Provides
     @JvmStatic
-    fun provideGitHubService(retrofit: Retrofit): GitHubService = retrofit.create(GitHubService::class.java)
+    fun provideProductListService(retrofit: Retrofit): ProductService = retrofit.create(ProductService::class.java)
 
 }

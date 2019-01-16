@@ -2,6 +2,7 @@ package com.kohls.bootstrap.bootstrapapp.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -20,8 +21,9 @@ class ViewModelFactory @Inject constructor(
                 }
             }
         }
-        if (creator == null) throw IllegalArgumentException("unknown model class " + modelClass)
+        if (creator == null) throw IllegalArgumentException("unknown model class $modelClass")
         return creator.get() as T
+
 
     }
 }
