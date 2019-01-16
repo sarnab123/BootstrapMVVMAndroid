@@ -3,11 +3,11 @@ package com.kohls.bootstrap.bootstrapapp.data.api
 import retrofit2.Response
 import java.util.regex.Pattern
 
-@Suppress("unused") // T is used in extending classes
+@Suppress("unused")
 sealed class ApiResponse<T> {
     companion object {
 
-        fun <T> createLoadingResponse() : ApiIsLoading<T> = ApiIsLoading()
+        fun <T> createLoadingResponse(): ApiIsLoading<T> = ApiIsLoading()
 
         fun <T> create(error: Throwable): ApiErrorResponse<T> {
             return ApiErrorResponse(error)
@@ -20,8 +20,8 @@ sealed class ApiResponse<T> {
                     ApiEmptyResponse()
                 } else {
                     ApiSuccessResponse(
-                            body = body,
-                            linkHeader = response.headers()?.get("link")
+                        body = body,
+                        linkHeader = response.headers()?.get("link")
                     )
                 }
             } else {
@@ -47,13 +47,13 @@ class ApiIsLoading<T> : ApiResponse<T>()
 
 
 data class ApiSuccessResponse<T>(
-        val body: T,
-        val links: Map<String, String?>
+    val body: T,
+    val links: Map<String, String?>
 ) : ApiResponse<T>() {
     constructor(body: T) : this(body, null)
     constructor(body: T, linkHeader: String?) : this(
-            body = body,
-            links = linkHeader?.extractLinks() ?: emptyMap()
+        body = body,
+        links = linkHeader?.extractLinks() ?: emptyMap()
     )
 
 

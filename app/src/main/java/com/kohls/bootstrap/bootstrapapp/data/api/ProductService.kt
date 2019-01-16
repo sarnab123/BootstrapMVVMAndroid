@@ -9,5 +9,6 @@ import retrofit2.http.QueryMap
 interface ProductService {
 
     @GET("/api/browse/v1/browse/catalog/{productID}")
-    fun listProducts(@Path("productID") productID : String, @QueryMap options : Map<String, String> ) : LiveData<ApiResponse<ProductList>>
+    fun listProducts(@Path("productID") productID: String, @QueryMap options: Map<String, String>):
+            LiveData<ApiResponse<ProductList>>
 }

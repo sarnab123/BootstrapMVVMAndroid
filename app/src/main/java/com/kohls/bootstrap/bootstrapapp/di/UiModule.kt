@@ -10,10 +10,10 @@ import com.kohls.bootstrap.bootstrapapp.di.module.MainModule
 @Module
 internal abstract class UiModule {
 
-  @Binds
-  abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
-  @ContributesAndroidInjector(modules = [MainModule::class])
-  internal abstract fun contributeMainActivity(): MainActivity
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    internal abstract fun contributeMainActivity(): MainActivity
 
 }

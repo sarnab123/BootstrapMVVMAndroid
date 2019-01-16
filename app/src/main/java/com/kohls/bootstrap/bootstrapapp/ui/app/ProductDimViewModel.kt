@@ -7,5 +7,5 @@ import javax.inject.Singleton
 @Singleton
 class ProductDimViewModel @Inject constructor() {
 
-  val productDimensionId = MutableLiveData<String>()
+    val productDimensionId = MutableLiveData<String>()
 }

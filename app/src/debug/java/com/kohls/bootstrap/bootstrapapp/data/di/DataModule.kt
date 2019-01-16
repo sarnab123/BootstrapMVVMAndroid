@@ -5,7 +5,6 @@ import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import com.kohls.bootstrap.bootstrapapp.data.api.GitHubService
 import com.kohls.bootstrap.bootstrapapp.data.api.LiveDataCallAdapterFactory
 import com.kohls.bootstrap.bootstrapapp.data.api.ProductService
 import okhttp3.OkHttpClient

@@ -7,8 +7,10 @@ import android.arch.lifecycle.Transformations
 import com.kohls.bootstrap.bootstrapapp.data.api.*
 import org.reactivestreams.Publisher
 
-fun <T, X> switchMapForApiResponse(liveData: LiveData<ApiResponse<T>>, doOnSubscribe: (() -> Unit)? = null, doOnSuccess: (((T?) -> X?)?) = null,
-                                   doOnError: (((Throwable) -> Unit)?) = null): LiveData<X?>? {
+fun <T, X> switchMapForApiResponse(
+    liveData: LiveData<ApiResponse<T>>, doOnSubscribe: (() -> Unit)? = null, doOnSuccess: (((T?) -> X?)?) = null,
+    doOnError: (((Throwable) -> Unit)?) = null
+): LiveData<X?>? {
 
     return Transformations.map(liveData) {
         when (it) {
@@ -35,5 +37,5 @@ fun <T, X> switchMapForApiResponse(liveData: LiveData<ApiResponse<T>>, doOnSubsc
 
 fun <T> Publisher<T>.toLiveData() = LiveDataReactiveStreams.fromPublisher(this)
 
-fun <T> LiveData<T>.toPublisher(lifecycleOwner: LifecycleOwner)
-    = LiveDataReactiveStreams.toPublisher(lifecycleOwner, this)
+fun <T> LiveData<T>.toPublisher(lifecycleOwner: LifecycleOwner) =
+    LiveDataReactiveStreams.toPublisher(lifecycleOwner, this)

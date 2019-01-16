@@ -4,6 +4,7 @@ import com.kohls.bootstrap.bootstrapapp.di.DaggerAppComponent
 import com.kohls.bootstrap.bootstrapapp.di.applyAutoInjector
 import dagger.android.support.DaggerApplication
 import com.kohls.bootstrap.bootstrapapp.ui.app.ProductDimViewModel
+import com.squareup.leakcanary.LeakCanary
 import javax.inject.Inject
 
 /**
@@ -18,23 +19,33 @@ import javax.inject.Inject
 
 class App : DaggerApplication() {
 
-  @Inject lateinit var appLifecycleCallbacks: AppLifecycleCallbacks
-  @Inject lateinit var productDimViewModel: ProductDimViewModel
+    @Inject
+    lateinit var appLifecycleCallbacks: AppLifecycleCallbacks
+    @Inject
+    lateinit var productDimViewModel: ProductDimViewModel
 
-  override fun applicationInjector() = DaggerAppComponent.builder()
-      .application(this)
-      .build()
+    override fun applicationInjector() = DaggerAppComponent.builder()
+        .application(this)
+        .build()
 
-  override fun onCreate() {
-    super.onCreate()
-    applyAutoInjector()
-    appLifecycleCallbacks.onCreate(this)
-    productDimViewModel.productDimensionId.value = "Gender:Mens Silhouette:Button-Down Shirts Category:Tops Department:Clothing"
-  }
+    override fun onCreate() {
+        super.onCreate()
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
 
-  override fun onTerminate() {
-    appLifecycleCallbacks.onTerminate(this)
-    super.onTerminate()
-  }
+        applyAutoInjector()
+        appLifecycleCallbacks.onCreate(this)
+        productDimViewModel.productDimensionId.value =
+                "Gender:Mens Silhouette:Button-Down Shirts Category:Tops Department:Clothing"
+    }
+
+    override fun onTerminate() {
+        appLifecycleCallbacks.onTerminate(this)
+        super.onTerminate()
+    }
 
 }

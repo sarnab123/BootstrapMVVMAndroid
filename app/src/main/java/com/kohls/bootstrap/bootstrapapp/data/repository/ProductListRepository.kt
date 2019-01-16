@@ -5,6 +5,7 @@ import javax.inject.Inject
 
 class ProductListRepository @Inject constructor(private val productService: ProductService) {
 
-    fun loadProducts(productID: String, urlParameters: Map<String,String>) = productService.listProducts(productID,urlParameters)
+    fun loadProducts(productID: String, urlParameters: Map<String, String>) =
+        productService.listProducts(productID, urlParameters)
 
 }

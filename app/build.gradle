@@ -39,6 +39,7 @@ ext{
     mockitoVersion = '2.19.0'
     jUnitVersion = '4.12'
     mockitoKotlinVersion = '1.6.0'
+    leakCanaryVersion = '1.6.3'
     assertjVersion = '1.7.1'
     tests = [
             jUnit                    : "junit:junit:${jUnitVersion}",
@@ -94,7 +95,17 @@ dependencies {
 
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
+    // room
+    implementation 'android.arch.persistence.room:runtime:1.0.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+
     implementation "com.jakewharton.timber:timber:4.6.0"
+
+    //leakCanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    // Optional, if you use support library fragments:
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$leakCanaryVersion"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
